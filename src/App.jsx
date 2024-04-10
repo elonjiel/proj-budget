@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react' 
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap-icons/font/bootstrap-icons.css"
+import Budget from './components/Budget'
+import Remaining from './components/Remaining'
+import ExpenseTotal from './components/ExpenseTotal'
+import ExpenseList from './components/ExpenseList'
+import AddExpenseForm from './components/AddExpenseForm'
+import { AppProvider } from './context/AppContext'
+import "./App.css"
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <AppProvider>
+    <div className="container">
+      <h1 className="mt-4 mb-4"><i class="bi bi-cash-stack"></i>  My Budget Planner </h1>
+      <div className="row mt-3">
+        <div className="col-sm">
+          <Budget />
+        </div>
+        <div className="col-sm">
+          <Remaining />
+        </div>
+        <div className="col-sm">
+          <ExpenseTotal />
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <h3 className="mt-3">Expenses</h3>
+      <div className="row mt-3">
+        <div className="col-sm">
+          <ExpenseList/>
+        </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      <h3 className="mt-3">Add Expense</h3>
+      <div className="row mt-3">
+        <div className="col-sm">
+          <AddExpenseForm/>
+        </div>
+      </div>
+    </div>
+    </AppProvider>
   )
+  
 }
 
 export default App
